@@ -21,6 +21,32 @@
   },
   {
     "ContainingType": "TaskSystem.Controllers.TaskController",
+    "Method": "createTask",
+    "RelativePath": "api/Task",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskModel",
+        "Type": "TaskSystem.Models.TaskModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TaskSystem.Models.TaskModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TaskSystem.Controllers.TaskController",
     "Method": "findById",
     "RelativePath": "api/Task/{id}",
     "HttpMethod": "GET",

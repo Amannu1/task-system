@@ -29,5 +29,12 @@ namespace TaskSystem.Controllers
             TaskModel task = await _taskRepository.findById(id);
             return Ok(task);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<TaskModel>> createTask([FromBody] TaskModel taskModel)
+        {
+            TaskModel task = await _taskRepository.createTask(taskModel);
+            return Ok(task);
+        }
     }
 }
