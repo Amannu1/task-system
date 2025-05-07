@@ -1,15 +1,32 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using TaskSystem.Data;
+using TaskSystem.Repository;
+using TaskSystem.Repository.Interface;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace TaskSystem
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
 
-var app = builder.Build();
+            builder.Services.AddEntityFrameworkNpgsql()
+                .AddDbContext<TaskSystemDBContext>(
+                    options => options.UseNpgsql(builder.Configuration.GetConnectionString("DataBase"))
+                );
 
-app.UseHttpsRedirection();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-app.MapControllers();
+            var app = builder.Build();
 
-app.Run();
+            app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.MapControllers();
+            app.Run();
+        }
+    }
+}

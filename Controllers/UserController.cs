@@ -4,7 +4,7 @@ using TaskSystem.Models;
 
 namespace TaskSystem.Controllers
 {
-    [Route("api/[controll er]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
