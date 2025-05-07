@@ -35,5 +35,12 @@ namespace TaskSystem.Controllers
             UserModel user = await _userRepository.createUser(userModel);
             return Ok(user);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<UserModel>>> updateUser(int id, UserModel userModel)
+        {
+            UserModel user = await _userRepository.updateUser(userModel, id);
+            return Ok(user);
+        }
     }
 }
