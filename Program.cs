@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using TaskSystem.Data;
 using TaskSystem.Repository;
 using TaskSystem.Repository.Interface;
+using Refit;
+using TaskSystem.Integration.Refit;
 
 namespace TaskSystem
 {
@@ -21,6 +23,11 @@ namespace TaskSystem
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+
+            builder.Services.AddRefitClient<IViaCepIntegrationRefit>().ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("https://viacep.com.br");
+            });
 
             var app = builder.Build();
 
