@@ -12,6 +12,7 @@ namespace TaskSystem.Repository
         {
             _dbContext = taskSystemDBContext;
         }
+
         public async Task<UserModel> findById(int id)
         {
             return await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
@@ -57,6 +58,7 @@ namespace TaskSystem.Repository
 
             _dbContext.Users.Remove(userById);
             await _dbContext.SaveChangesAsync();
+
             return true;
         }
     }
