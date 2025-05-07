@@ -36,5 +36,20 @@ namespace TaskSystem.Controllers
             TaskModel task = await _taskRepository.createTask(taskModel);
             return Ok(task);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TaskModel>> updateTask([FromBody] TaskModel taskModel, int id)
+        {
+            taskModel.Id = id;
+            TaskModel task = await _taskRepository.updateTask(taskModel, id);
+            return Ok(task);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<TaskModel>> deleteTask(int id)
+        {
+            bool deleted = await _taskRepository.deleteTask(id);
+            return Ok(deleted);
+        }
     }
 }
