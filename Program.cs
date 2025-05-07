@@ -4,6 +4,8 @@ using TaskSystem.Repository;
 using TaskSystem.Repository.Interface;
 using Refit;
 using TaskSystem.Integration.Refit;
+using TaskSystem.Integration.Interfaces;
+using TaskSystem.Integration;
 
 namespace TaskSystem
 {
@@ -23,6 +25,7 @@ namespace TaskSystem
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+            builder.Services.AddScoped<IViaCepIntegration, ViaCepIntegration>();
 
             builder.Services.AddRefitClient<IViaCepIntegrationRefit>().ConfigureHttpClient(c =>
             {
