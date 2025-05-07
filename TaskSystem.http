@@ -1,6 +1,6 @@
 @TaskSystem_HostAddress = http://localhost:5256
 
-GET {{TaskSystem_HostAddress}}/todos/
+GET {{TaskSystem_HostAddress}}/api/user
 Accept: application/json
 
 ###
