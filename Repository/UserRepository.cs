@@ -13,17 +13,17 @@ namespace TaskSystem.Repository
             _dbContext = taskSystemDBContext;
         }
 
-        public async Task<UserModel> findById(int id)
+        public async Task<UserModel> GetById(int id)
         {
             return await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<UserModel>> findAllUsers()
+        public async Task<List<UserModel>> GetAll()
         {
             return await _dbContext.Users.ToListAsync();
         }  
 
-        public async Task<UserModel> createUser(UserModel user)
+        public async Task<UserModel> Create(UserModel user)
         {
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
@@ -31,9 +31,9 @@ namespace TaskSystem.Repository
             return user;
         }
 
-        public async Task<UserModel> updateUser(UserModel user, int id)
+        public async Task<UserModel> Update(UserModel user, int id)
         {
-            UserModel userById = await findById(id);
+            UserModel userById = await GetById(id);
             if (userById == null)
             {
                 throw new Exception($"User for the given ID: {id} not found in database.");
@@ -48,9 +48,9 @@ namespace TaskSystem.Repository
             return userById;
         }
 
-        public async Task<bool> deleteUser(int id)
+        public async Task<bool> Delete(int id)
         {
-            UserModel userById = await findById(id);
+            UserModel userById = await GetById(id);
             if (userById == null)
             {
                 throw new Exception($"User for the given ID: {id} not found in database.");

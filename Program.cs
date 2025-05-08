@@ -9,6 +9,7 @@ using TaskSystem.Integration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TaskSystem.Services.User;
 
 
 namespace TaskSystem
@@ -30,7 +31,10 @@ namespace TaskSystem
                 );
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
             builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+
             builder.Services.AddScoped<IViaCepIntegration, ViaCepIntegration>();
 
             builder.Services.AddRefitClient<IViaCepIntegrationRefit>().ConfigureHttpClient(c =>
