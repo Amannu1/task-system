@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TaskSystem.Services.User;
+using TaskSystem.Services.Task;
 
 
 namespace TaskSystem
@@ -34,6 +35,7 @@ namespace TaskSystem
             builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+            //builder.Services.AddScoped<ITaskService, TaskService>();
 
             builder.Services.AddScoped<IViaCepIntegration, ViaCepIntegration>();
 
