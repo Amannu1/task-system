@@ -11,6 +11,7 @@ namespace TaskSystem.Services.User
             _repository = repository;   
         }
 
+
         public async Task<List<UserModel>> GetAll()
         {
             return await _repository.GetAll();

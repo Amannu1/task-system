@@ -27,7 +27,6 @@ C:\Users\User\source\repos\TaskSystem\tasksystem\obj\Debug\net8.0\refint\TaskSys
 C:\Users\User\source\repos\TaskSystem\tasksystem\obj\Debug\net8.0\TaskSystem.pdb
 C:\Users\User\source\repos\TaskSystem\tasksystem\obj\Debug\net8.0\TaskSystem.genruntimeconfig.cache
 C:\Users\User\source\repos\TaskSystem\tasksystem\obj\Debug\net8.0\ref\TaskSystem.dll
-C:\Users\User\source\repos\TaskSystem\TaskSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\User\source\repos\TaskSystem\TaskSystem\bin\Debug\net8.0\Humanizer.dll
 C:\Users\User\source\repos\TaskSystem\TaskSystem\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\User\source\repos\TaskSystem\TaskSystem\bin\Debug\net8.0\Microsoft.Build.Locator.dll

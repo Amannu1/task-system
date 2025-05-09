@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskSystem.Models;
-using TaskSystem.Repository.Interface;
 using TaskSystem.Services.Task;
 
 namespace TaskSystem.Controllers
