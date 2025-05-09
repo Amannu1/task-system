@@ -1,2 +1,5 @@
 TaskSystemTest/coveragereport/
 TaskSystemTest/TestResults/
+bin/
+obj/
+.vs/
