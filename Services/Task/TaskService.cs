@@ -14,23 +14,31 @@ namespace TaskSystem.Services.Task
 
         public async Task<List<TaskModel>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAll();
         }
-        public Task<TaskModel> GetById(int id)
+
+        public async Task<TaskModel> GetById(int id)
         {
-            throw new NotImplementedException();
+            var user = await _repository.GetById(id);
+            if (user == null)
+            {
+                throw new Exception($"Task with ID {id} not found.");
+            }
+            return user;
         }
-        public Task<TaskModel> Create(TaskModel model)
+
+        public async Task<TaskModel> Create(TaskModel model)
         {
-            throw new NotImplementedException();
+            return await _repository.Create(model);
         }
-        public Task<TaskModel> Update(TaskModel model, int id)
+
+        public async Task<TaskModel> Update(TaskModel model, int id)
         {
-            throw new NotImplementedException();
+            return await _repository.Update(model, id);
         }
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            return await _repository.Delete(id);
         }
     }
 }
