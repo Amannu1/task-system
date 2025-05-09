@@ -15,21 +15,21 @@ namespace TaskSystem.Repository
             _dbContext = taskSystemDBContext;
         }
 
-        public async Task<TaskModel> findById(int id)
+        public async Task<TaskModel> GetById(int id)
         {
             return await _dbContext.Tasks
                 .Include(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<TaskModel>> findAllTasks()
+        public async Task<List<TaskModel>> GetAll()
         {
             return await _dbContext.Tasks
                 .Include(x => x.User)
                 .ToListAsync();
         }
 
-        public async Task<TaskModel> createTask(TaskModel task)
+        public async Task<TaskModel> Create(TaskModel task)
         {
             await _dbContext.Tasks.AddAsync(task);
             await _dbContext.SaveChangesAsync();
@@ -37,9 +37,9 @@ namespace TaskSystem.Repository
             return task;
         }
 
-        public async Task<TaskModel> updateTask(TaskModel task, int id)
+        public async Task<TaskModel> Update(TaskModel task, int id)
         {
-            TaskModel taskById = await findById(id);
+            TaskModel taskById = await GetById(id);
             if (taskById == null)
             {
                 throw new Exception($"Task for the given ID: {id} not found in database.");
@@ -56,9 +56,9 @@ namespace TaskSystem.Repository
             return taskById;
         }
 
-        public async Task<bool> deleteTask(int id)
+        public async Task<bool> Delete(int id)
         {
-            TaskModel taskById = await findById(id);
+            TaskModel taskById = await GetById(id);
 
             if (taskById == null)
             {

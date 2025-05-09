@@ -4,10 +4,10 @@ namespace TaskSystem.Repository.Interface
 {
     public interface ITaskRepository
     {
-        Task<List<TaskModel>> findAllTasks();
-        Task<TaskModel> findById(int id);
-        Task<TaskModel> createTask(TaskModel task);
-        Task<TaskModel> updateTask(TaskModel task, int id);
-        Task<bool> deleteTask(int id);
+        Task<List<TaskModel>> GetAll();
+        Task<TaskModel> GetById(int id);
+        Task<TaskModel> Create(TaskModel task);
+        Task<TaskModel> Update(TaskModel task, int id);
+        Task<bool> Delete(int id);
     }
 }

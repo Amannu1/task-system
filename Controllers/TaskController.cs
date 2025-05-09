@@ -21,21 +21,21 @@ namespace TaskSystem.Controllers
         [HttpGet]
         public async Task<ActionResult<List<TaskModel>>> findAll()
         {
-            List<TaskModel> task = await _taskRepository.findAllTasks();
+            List<TaskModel> task = await _taskRepository.GetAll();
             return Ok(task);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<List<TaskModel>>> findById(int id)
         {
-            TaskModel task = await _taskRepository.findById(id);
+            TaskModel task = await _taskRepository.GetById(id);
             return Ok(task);
         }
 
         [HttpPost]
         public async Task<ActionResult<TaskModel>> createTask([FromBody] TaskModel taskModel)
         {
-            TaskModel task = await _taskRepository.createTask(taskModel);
+            TaskModel task = await _taskRepository.Create(taskModel);
             return Ok(task);
         }
 
@@ -43,14 +43,14 @@ namespace TaskSystem.Controllers
         public async Task<ActionResult<TaskModel>> updateTask([FromBody] TaskModel taskModel, int id)
         {
             taskModel.Id = id;
-            TaskModel task = await _taskRepository.updateTask(taskModel, id);
+            TaskModel task = await _taskRepository.Update(taskModel, id);
             return Ok(task);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<TaskModel>> deleteTask(int id)
         {
-            bool deleted = await _taskRepository.deleteTask(id);
+            bool deleted = await _taskRepository.Delete(id);
             return Ok(deleted);
         }
     }
