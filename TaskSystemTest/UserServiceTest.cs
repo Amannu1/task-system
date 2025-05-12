@@ -1,6 +1,5 @@
 using Moq;
 using TaskSystem.Models;
-using TaskSystem.Repository;
 using TaskSystem.Repository.Interface;
 using TaskSystem.Services.User;
 
@@ -32,7 +31,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetByIdShouldReturnExistingUser()
         {
-            var user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
             _repository.Setup(repo => repo.GetById(user.Id)).ReturnsAsync(user);
 
             var result = await _service.GetById(user.Id);
@@ -42,11 +41,49 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetByIdShouldThrowExceptionWhenUserDoesNotExist()
         {
-            var user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
             _repository.Setup(repo => repo.GetById(user.Id)).ReturnsAsync(user);
 
             var ex = await Assert.ThrowsAsync<Exception>(() => _service.GetById(2));
             
+        }
+
+        [Fact]
+        public async Task CreateShouldReturnUser()
+        {
+            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            _repository.Setup(repo => repo.Create(user)).ReturnsAsync(user);
+
+            var result = await _service.Create(user);
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Id);
+        }
+
+        [Fact]
+        public async Task UpdateShouldReturnUserWhenIdExists()
+        {
+            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            _repository.Setup(repo => repo.Update(user, user.Id)).ReturnsAsync(user);
+
+            var result = await _service.Update(user, user.Id);
+
+            Assert.NotNull(result);
+            Assert.Equal(1, user.Id);
+            Assert.Equal("Manu", user.Name);
+            Assert.Equal("manu@gmail.com", user.Email);
+        }
+
+        [Fact]
+        public async Task DeleteShouldReturnTrue()
+        {
+           UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+
+            _repository.Setup(repo => repo.Delete(user.Id)).ReturnsAsync(true);
+
+            var result = await _service.Delete(user.Id);
+
+            Assert.True(result);
         }
     }
 }
