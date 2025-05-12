@@ -36,7 +36,7 @@ namespace TaskSystemTest
 
             var result = await _service.GetById(user.Id);
 
-            Assert.Equal(1, result.Id);
+            Assert.Equal(user.Id, result.Id);
         }
         [Fact]
         public async Task GetByIdShouldThrowExceptionWhenUserDoesNotExist()
@@ -57,7 +57,7 @@ namespace TaskSystemTest
             var result = await _service.Create(user);
 
             Assert.NotNull(result);
-            Assert.Equal(1, result.Id);
+            Assert.Equal(user.Id, result.Id);
         }
 
         [Fact]
@@ -69,9 +69,9 @@ namespace TaskSystemTest
             var result = await _service.Update(user, user.Id);
 
             Assert.NotNull(result);
-            Assert.Equal(1, user.Id);
-            Assert.Equal("Manu", user.Name);
-            Assert.Equal("manu@gmail.com", user.Email);
+            Assert.Equal(user.Id, result.Id);
+            Assert.Equal(user.Name, result.Name);
+            Assert.Equal(user.Email, result.Email);
         }
 
         [Fact]

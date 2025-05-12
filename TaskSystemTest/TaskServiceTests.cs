@@ -19,13 +19,27 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetAllShouldReturnTaskList()
         {
-            var list = new List<TaskModel> { new TaskModel{Id = 1, Name = "Manu", Description = "Task 1", Status = (TaskStatus)1, UserId = 1}};
+            var list = new List<TaskModel> { new TaskModel{Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1}};
             _repository.Setup(repo => repo.GetAll()).ReturnsAsync(list);
 
             var result = await _service.GetAll();
 
             Assert.NotNull(result);
             Assert.Single(result);
+        }
+
+        [Fact]
+        public async Task GetByIdShouldReturnExistingUser()
+        {
+            TaskModel task = new TaskModel { Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1 };
+            _repository.Setup(repo => repo.GetById(task.Id)).ReturnsAsync(task);
+
+            var result = await _service.GetById(task.Id);
+
+            Assert.NotNull(result);
+            Assert.Equal(task.Name, result.Name);
+            Assert.Equal(task.Id, result.Id);
+    
         }
     }
 }
