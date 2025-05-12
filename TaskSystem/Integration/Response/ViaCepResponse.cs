@@ -1,5 +1,8 @@
-﻿namespace TaskSystem.Integration.Response
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TaskSystem.Integration.Response
 {
+    [ExcludeFromCodeCoverage]
     public class ViaCepResponse
     {
         public string? Cep { get; set; }

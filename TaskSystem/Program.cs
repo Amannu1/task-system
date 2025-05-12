@@ -11,10 +11,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TaskSystem.Services.User;
 using TaskSystem.Services.Task;
+using System.Diagnostics.CodeAnalysis;
 
 
 namespace TaskSystem
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static void Main(string[] args)

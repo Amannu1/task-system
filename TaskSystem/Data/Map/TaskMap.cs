@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TaskSystem.Models;
 
 namespace TaskSystem.Data.Map
 {
+    [ExcludeFromCodeCoverage]
     public class TaskMap : IEntityTypeConfiguration<TaskModel>
     {
 

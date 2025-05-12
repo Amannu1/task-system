@@ -1,5 +1,8 @@
-﻿namespace TaskSystem.Models
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TaskSystem.Models
 {
+    [ExcludeFromCodeCoverage]
     public class UserModel
     {
         public int Id {  get; set; }

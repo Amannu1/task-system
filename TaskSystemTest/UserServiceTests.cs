@@ -5,12 +5,12 @@ using TaskSystem.Services.User;
 
 namespace TaskSystemTest
 {
-    public class UserServiceTest
+    public class UserServiceTests
     {
         private readonly Mock<IUserRepository> _repository;
         private readonly UserService _service;
 
-        public UserServiceTest()
+        public UserServiceTests()
         {
             _repository = new Mock<IUserRepository>();
             _service = new UserService(_repository.Object);

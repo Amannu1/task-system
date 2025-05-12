@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using TaskSystem.Data.Map;
 using TaskSystem.Models;
 
 namespace TaskSystem.Data
 {
+    [ExcludeFromCodeCoverage]
     public class TaskSystemDBContext : DbContext
     {
         public TaskSystemDBContext(DbContextOptions<TaskSystemDBContext> options)

@@ -1,5 +1,8 @@
-﻿namespace TaskSystem.Models
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TaskSystem.Models
 {
+    [ExcludeFromCodeCoverage]
     public class LoginModel
     {
         public string? Login {  get; set; }
