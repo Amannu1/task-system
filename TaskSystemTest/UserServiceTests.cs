@@ -10,6 +10,9 @@ namespace TaskSystemTest
         private readonly Mock<IUserRepository> _repository;
         private readonly UserService _service;
 
+        private const string DefaultUsername = "testuser";
+        private const string DefaultEmail = "testemail";
+
         public UserServiceTests()
         {
             _repository = new Mock<IUserRepository>();
@@ -19,7 +22,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetAllShouldReturnUserList()
         {
-            var list = new List<UserModel> { new UserModel{Id = 1, Name = "Manu", Email = "email@email.com" }
+            var list = new List<UserModel> { new UserModel{Id = 1, Name = DefaultUsername, Email = DefaultEmail }
             };
 
             _repository.Setup(repo => repo.GetAll()).ReturnsAsync(list);
@@ -31,7 +34,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetByIdShouldReturnExistingUser()
         {
-            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            UserModel user = new UserModel { Id = 1, Name = DefaultUsername, Email = DefaultEmail };
             _repository.Setup(repo => repo.GetById(user.Id)).ReturnsAsync(user);
 
             var result = await _service.GetById(user.Id);
@@ -41,7 +44,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetByIdShouldThrowExceptionWhenUserDoesNotExist()
         {
-            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            UserModel user = new UserModel { Id = 1, Name = DefaultUsername, Email = DefaultEmail };
             _repository.Setup(repo => repo.GetById(user.Id)).ReturnsAsync(user);
 
             var ex = await Assert.ThrowsAsync<Exception>(() => _service.GetById(2));
@@ -51,7 +54,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task CreateShouldReturnUser()
         {
-            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            UserModel user = new UserModel { Id = 1, Name = DefaultUsername, Email = DefaultEmail };
             _repository.Setup(repo => repo.Create(user)).ReturnsAsync(user);
 
             var result = await _service.Create(user);
@@ -63,7 +66,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task UpdateShouldReturnUserWhenIdExists()
         {
-            UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+            UserModel user = new UserModel { Id = 1, Name = DefaultUsername, Email = DefaultEmail };
             _repository.Setup(repo => repo.Update(user, user.Id)).ReturnsAsync(user);
 
             var result = await _service.Update(user, user.Id);
@@ -77,7 +80,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task DeleteShouldReturnTrue()
         {
-           UserModel user = new UserModel { Id = 1, Name = "Manu", Email = "manu@gmail.com" };
+           UserModel user = new UserModel { Id = 1, Name = DefaultUsername, Email = DefaultEmail };
 
             _repository.Setup(repo => repo.Delete(user.Id)).ReturnsAsync(true);
 

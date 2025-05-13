@@ -10,6 +10,9 @@ namespace TaskSystemTest
         private readonly Mock<ITaskRepository> _repository;
         private readonly TaskService _service;
 
+        private const string DefaultUsername = "testuser";
+        private const string DefaultDescription = "testdescription";
+
         public TaskServiceTests()
         {
             _repository = new Mock<ITaskRepository>();
@@ -19,7 +22,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetAllShouldReturnTaskList()
         {
-            var list = new List<TaskModel> { new TaskModel { Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1 } };
+            var list = new List<TaskModel> { new TaskModel { Id = 1, Name = DefaultUsername, Description = DefaultDescription, Status = (TaskStatus)1, UserId = 1 } };
             _repository.Setup(repo => repo.GetAll()).ReturnsAsync(list);
 
             var result = await _service.GetAll();
@@ -31,7 +34,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetByIdShouldReturnUserWhenIdExists()
         {
-            TaskModel task = new TaskModel { Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1 };
+            TaskModel task = new TaskModel { Id = 1, Name = DefaultUsername, Description = DefaultDescription, Status = (TaskStatus)1, UserId = 1 };
             _repository.Setup(repo => repo.GetById(task.Id)).ReturnsAsync(task);
 
             var result = await _service.GetById(task.Id);
@@ -45,7 +48,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task GetByIdShouldThrowExceptionWhenIdDoesNotExist()
         {
-            TaskModel task = new TaskModel { Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1 };
+            TaskModel task = new TaskModel { Id = 1, Name = DefaultUsername, Description = DefaultDescription, Status = (TaskStatus)1, UserId = 1 };
             _repository.Setup(repo => repo.GetById(task.Id)).ReturnsAsync(task);
 
             var ex = await Assert.ThrowsAsync<Exception>(() => _service.GetById(2));
@@ -54,7 +57,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task CreateShouldReturnUser()
         {
-            TaskModel task = new TaskModel { Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1 };
+            TaskModel task = new TaskModel { Id = 1, Name = DefaultUsername, Description = DefaultDescription, Status = (TaskStatus)1, UserId = 1 };
             _repository.Setup(repo => repo.Create(task)).ReturnsAsync(task);
 
             var result = await _service.Create(task);
@@ -66,7 +69,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task UpdateShouldReturnUser()
         {
-            TaskModel task = new TaskModel { Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1 };
+            TaskModel task = new TaskModel { Id = 1, Name = DefaultUsername, Description = DefaultDescription, Status = (TaskStatus)1, UserId = 1 };
             _repository.Setup(repo => repo.Update(task, task.Id)).ReturnsAsync(task);
 
             var result = await _service.Update(task, task.Id);
@@ -83,7 +86,7 @@ namespace TaskSystemTest
         [Fact]
         public async Task DeleteShouldReturnTrue()
         {
-            TaskModel task = new TaskModel { Id = 1, Name = "Task 01", Description = "Description 1", Status = (TaskStatus)1, UserId = 1 };
+            TaskModel task = new TaskModel { Id = 1, Name = DefaultUsername, Description = DefaultDescription, Status = (TaskStatus)1, UserId = 1 };
             _repository.Setup(repo => repo.Delete(task.Id)).ReturnsAsync(true);
 
             var result = await _service.Delete(task.Id);
