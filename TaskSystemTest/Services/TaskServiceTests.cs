@@ -3,7 +3,7 @@ using TaskSystem.Models;
 using TaskSystem.Repository.Interface;
 using TaskSystem.Services.Task;
 
-namespace TaskSystemTest
+namespace TaskSystemTest.Services
 {
     public class TaskServiceTests
     {
@@ -42,7 +42,6 @@ namespace TaskSystemTest
             Assert.NotNull(result);
             Assert.Equal(task.Name, result.Name);
             Assert.Equal(task.Id, result.Id);
-
         }
 
         [Fact]

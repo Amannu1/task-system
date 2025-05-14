@@ -3,7 +3,7 @@ using TaskSystem.Models;
 using TaskSystem.Repository.Interface;
 using TaskSystem.Services.User;
 
-namespace TaskSystemTest
+namespace TaskSystemTest.Services
 {
     public class UserServiceTests
     {
